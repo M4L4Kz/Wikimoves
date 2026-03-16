@@ -1,121 +1,53 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { Suspense } from 'react'
+import { Canvas } from '@react-three/fiber'
+import { OrbitControls, Stars, Environment } from '@react-three/drei'
+import { EffectComposer, Bloom, Noise } from '@react-three/postprocessing'
+import { Graffiti_alley_v3 } from './components/Graffiti_alley_v3'
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function Scene() {
   return (
     <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+      {/* 1. Fundo e Atmosfera */}
+      <color attach="background" args={['#050505']} />
+      <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
+      
+      <Suspense fallback={null}>
+        {/* 2. O Cenário Importado */}
+        <Graffiti_alley_v3 />
+        
+        {/* 3. Iluminação Noturna Estruturada */}
+        <ambientLight intensity={0.05} />
+        
+        {/* Luz Neon Rosa/Hotpink */}
+        <pointLight position={[5, 2, 5]} intensity={15} color="hotpink" castShadow />
+        
+        {/* Luz de Poste/Ciano */}
+        <pointLight position={[-3, 4, -2]} intensity={10} color="#00ffff" castShadow />
+        
+        {/* Spot de preenchimento vindo de cima */}
+        <spotLight position={[0, 15, 0]} angle={0.3} penumbra={1} intensity={2} castShadow />
 
-      <div className="ticks"></div>
+        {/* Reflexos metálicos (importante para o visual noturno) */}
+        <Environment preset="city" />
+      </Suspense>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+      <OrbitControls makeDefault />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
+      {/* 4. Pós-processamento para o brilho neon */}
+      <EffectComposer>
+        <Bloom luminanceThreshold={1} luminanceSmoothing={0.9} height={300} />
+        <Noise opacity={0.02} />
+      </EffectComposer>
     </>
   )
 }
 
-export default App
+export default function App() {
+  return (
+    <div style={{ width: '100vw', height: '100vh', background: '#000' }}>
+      <Canvas shadows camera={{ position: [10, 5, 10], fov: 45 }}>
+        <Scene />
+      </Canvas>
+    </div>
+  )
+}
