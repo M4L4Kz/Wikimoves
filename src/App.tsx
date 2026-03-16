@@ -1,8 +1,36 @@
 import { Suspense } from 'react'
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Stars, Environment } from '@react-three/drei'
-import { EffectComposer, Bloom, Noise } from '@react-three/postprocessing'
+import { Canvas, useThree } from '@react-three/fiber'
+import { 
+  OrbitControls, 
+  Stars, 
+  Environment 
+} from '@react-three/drei'
+import { 
+  EffectComposer, 
+  Bloom, 
+  Noise 
+} from '@react-three/postprocessing'
+
+// Imports de componentes locais
 import { Graffiti_alley_v3 } from './components/Graffiti_alley_v3'
+import { NpcSit } from './components/NpcSit'
+
+/**
+ * ADICIONADO: A função que estava faltando!
+ * Sem ela, o arquivo quebra e o export default some.
+ */
+function CameraDebugger() {
+  const { camera } = useThree()
+  return (
+    <OrbitControls 
+      makeDefault 
+      onEnd={() => {
+        const { x, y, z } = camera.position
+        console.log(`📍 Coordenadas: [${x.toFixed(2)}, ${y.toFixed(2)}, ${z.toFixed(2)}]`)
+      }} 
+    />
+  )
+}
 
 function Scene() {
   return (
@@ -12,28 +40,23 @@ function Scene() {
       <Stars radius={100} depth={50} count={5000} factor={4} saturation={0} fade speed={1} />
       
       <Suspense fallback={null}>
-        {/* 2. O Cenário Importado */}
+        {/* 2. Cenário e Personagem */}
         <Graffiti_alley_v3 />
         
-        {/* 3. Iluminação Noturna Estruturada */}
+        {/* O NPC na posição que você extraiu */}
+        <NpcSit position={[0.25, -23.90, -29.01]} />
+        
+        {/* 3. Iluminação */}
         <ambientLight intensity={0.05} />
-        
-        {/* Luz Neon Rosa/Hotpink */}
         <pointLight position={[5, 2, 5]} intensity={15} color="hotpink" castShadow />
-        
-        {/* Luz de Poste/Ciano */}
         <pointLight position={[-3, 4, -2]} intensity={10} color="#00ffff" castShadow />
         
-        {/* Spot de preenchimento vindo de cima */}
-        <spotLight position={[0, 15, 0]} angle={0.3} penumbra={1} intensity={2} castShadow />
-
-        {/* Reflexos metálicos (importante para o visual noturno) */}
         <Environment preset="city" />
       </Suspense>
 
-      <OrbitControls makeDefault />
-
-      {/* 4. Pós-processamento para o brilho neon */}
+      {/* 4. Controles e Efeitos */}
+      <CameraDebugger />
+      
       <EffectComposer>
         <Bloom luminanceThreshold={1} luminanceSmoothing={0.9} height={300} />
         <Noise opacity={0.02} />
