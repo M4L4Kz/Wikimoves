@@ -1,7 +1,14 @@
-# React + TypeScript + Vite
-<img width="1366" height="691" alt="WikimoveSshot1" src="https://github.com/user-attachments/assets/6591498e-8569-4433-be9c-89153872d767" />
 Wikimoves
 
+Uma Wikipédia para catalogalização dos movimentos, passos, transições e base de conhecimentos sobre a dança B-Boying ou Breaking.
+
+https://github.com/user-attachments/assets/ec349166-4fd2-4f44-94a7-48745eed76db
+
+
+
+<img width="1366" height="691" alt="WikimoveSshot1" src="https://github.com/user-attachments/assets/6591498e-8569-4433-be9c-89153872d767" />
+Wikimoves
+# React + TypeScript + Vite
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
