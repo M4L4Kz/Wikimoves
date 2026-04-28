@@ -1,3 +1,4 @@
+![WikimovesGif1 - Copy](https://github.com/user-attachments/assets/18b90969-c9aa-4842-8f8a-b8fe49f98bba)
 Wikimoves
 
 Uma Wikipédia para catalogalização dos movimentos, passos, transições e base de conhecimentos sobre a dança B-Boying ou Breaking.
