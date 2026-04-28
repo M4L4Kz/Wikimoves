@@ -1,6 +1,33 @@
-Wikimoves
-<img width="640" height="360" alt="WikimovesGif1" src="https://github.com/user-attachments/assets/4a1251b8-e007-4975-9b63-79f8d57c3a00" />
+<div align="center">
+  <h1>🕺 Wikimoves</h1>
+  <p>Uma enciclopédia interativa 3D para catalogação de movimentos e fundamentos do Breaking (B-Boying).</p>
+</div>
 
-Uma Wikipédia para catalogalização dos movimentos, passos, transições e base de conhecimentos sobre a dança B-Boying ou Breaking.
-<img width="1366" height="691" alt="WikimoveSshot1" src="https://github.com/user-attachments/assets/6591498e-8569-4433-be9c-89153872d767" />
+---
 
+## 📺 Demonstração
+
+<div align="center">
+  <img src="LINK_DO_SEU_GIF" width="800px" alt="Wikimoves Demo">
+</div>
+
+## 📝 Sobre o Projeto
+
+O Wikimoves nasceu da necessidade de documentar de forma visual e técnica a complexidade dos movimentos de dança. Através da renderização 3D, os usuários podem analisar ângulos, transições e a biomecânica de cada passo.
+
+## 🚀 Tecnologias Utilizadas
+
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Three.js](https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.dot.js&logoColor=white)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+
+(Insira aqui a descrição técnica da Stack mencionada acima)
+
+## 🛠️ Como rodar o projeto localmente
+
+1. Clone o repositório:
+   `git clone https://github.com/M4L4Kz/Wikimoves.git`
+2. Instale as dependências:
+   `npm install`
+3. Inicie o servidor de desenvolvimento:
+   `npm run dev`
