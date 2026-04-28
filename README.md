@@ -21,7 +21,6 @@ O Wikimoves nasceu da necessidade de documentar de forma visual e técnica a com
 ![Three.js](https://img.shields.io/badge/threejs-black?style=for-the-badge&logo=three.dot.js&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
 
-(Insira aqui a descrição técnica da Stack mencionada acima)
 
 ## 🛠️ Como rodar o projeto localmente
 
